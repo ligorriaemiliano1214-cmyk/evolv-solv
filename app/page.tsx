@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { ChatMessageBubble } from "@/components/chat-message";
 import { ChatSidebar } from "@/components/chat-sidebar";
+import { HelpPanel } from "@/components/help-panel";
 import { MarkdownText } from "@/components/markdown-text";
 import { ChatMessage } from "@/lib/types";
 import { supabase, ChatRow } from "@/lib/supabase";
@@ -14,6 +15,7 @@ import {
   MessageSquareWarning,
   PanelLeftClose,
   PanelLeft,
+  HelpCircle,
 } from "lucide-react";
 
 const SUGERENCIAS = [
@@ -47,6 +49,7 @@ export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showCategoryPicker, setShowCategoryPicker] = useState(false);
   const [pendingFirstMessage, setPendingFirstMessage] = useState<string | null>(null);
+  const [helpOpen, setHelpOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -268,6 +271,9 @@ export default function Home() {
 
   return (
     <div className="flex h-screen bg-zinc-50">
+      {/* Help panel */}
+      <HelpPanel open={helpOpen} onClose={() => setHelpOpen(false)} />
+
       {/* Category picker modal */}
       {showCategoryPicker && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
@@ -345,25 +351,34 @@ export default function Home() {
             </div>
 
             {/* Action buttons */}
-            {hasAssistantMessages && activeChatId && (
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={handleSecondOpinion}
-                  disabled={loading}
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-orange-700 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors disabled:opacity-50"
-                >
-                  <MessageSquareWarning className="w-3.5 h-3.5" />
-                  Segunda opinión
-                </button>
-                <button
-                  onClick={handleExportPDF}
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-600 bg-zinc-100 hover:bg-zinc-200 rounded-lg transition-colors"
-                >
-                  <FileText className="w-3.5 h-3.5" />
-                  Exportar PDF
-                </button>
-              </div>
-            )}
+            <div className="flex items-center gap-2">
+              {hasAssistantMessages && activeChatId && (
+                <>
+                  <button
+                    onClick={handleSecondOpinion}
+                    disabled={loading}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-orange-700 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors disabled:opacity-50"
+                  >
+                    <MessageSquareWarning className="w-3.5 h-3.5" />
+                    Segunda opinión
+                  </button>
+                  <button
+                    onClick={handleExportPDF}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-600 bg-zinc-100 hover:bg-zinc-200 rounded-lg transition-colors"
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    Exportar PDF
+                  </button>
+                </>
+              )}
+              <button
+                onClick={() => setHelpOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition-colors"
+              >
+                <HelpCircle className="w-3.5 h-3.5" />
+                Qué puedo hacer
+              </button>
+            </div>
           </div>
         </header>
 
