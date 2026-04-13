@@ -27,19 +27,32 @@ Luego, para cada solución usá EXACTAMENTE este formato (los marcadores ===SOLU
 NOMBRE: [nombre descriptivo]
 COMPLEJIDAD: [Baja|Media|Alta]
 COSTO: [Economico|Moderado|Costoso]
+COSTO_M2: [rango de precio por m² en ARS, ej: $15.000 - $25.000/m²]
 DURABILIDAD: [Corto plazo|Mediano plazo|Largo plazo]
 TIEMPO: [estimación de tiempo]
 MODERNIDAD: [Tradicional|Convencional|Moderno|Innovador]
 DESCRIPCION: [descripción detallada del método]
-MATERIALES: [material 1] | [material 2] | [material 3]
+MATERIALES: [producto específico con marca, ej: Membrana Megaflex No Crack 4mm] | [otro material con marca]
+MANO_DE_OBRA: [cuántos oficiales y ayudantes, horas-hombre estimadas, si necesita especialista]
 PASOS:
 1. [paso 1]
 2. [paso 2]
 3. [paso 3]
 VENTAJAS: [ventaja 1] | [ventaja 2]
 DESVENTAJAS: [desventaja 1] | [desventaja 2]
+CLIMA: [restricciones climáticas: temperatura mínima/máxima de aplicación, tiempo de secado, si necesita días sin lluvia, época del año recomendada]
+NORMATIVA: [normas IRAM aplicables, requisitos del código de edificación, habilitaciones necesarias. Si no aplica ninguna, poner "Sin requisitos especiales"]
+COMPATIBILIDAD: [con qué otras soluciones se puede combinar, o si es excluyente con alguna]
 CUANDO_CONVIENE: [en qué situación conviene esta solución]
 ===FIN_SOLUCION===
+
+REGLAS PARA EL CONTENIDO:
+1. PRECIOS: Siempre incluí un rango de costo por m² (o por unidad de trabajo) en pesos argentinos actuales. Sé realista con el mercado argentino.
+2. MARCAS Y PRODUCTOS: Nombrá marcas y productos específicos disponibles en Argentina (Sika, Weber, Klaukol, Megaflex, Sherwin Williams, Plavicon, Recuplast, Mapei, etc.). No digas solo "membrana asfáltica", decí "Membrana Megaflex No Crack 4mm" o "Sika Membrana Líquida".
+3. MANO DE OBRA: Especificá cuántos oficiales/ayudantes se necesitan, horas-hombre estimadas, y si requiere un especialista (impermeabilizador certificado, gasista matriculado, electricista habilitado, etc.) o si lo puede hacer una cuadrilla estándar.
+4. CLIMA Y ESTACIONALIDAD: Indicá restricciones de temperatura, humedad, lluvia y época del año. Por ejemplo: "No aplicar bajo 5°C", "Necesita 48hs sin lluvia posterior", "Ideal en primavera/otoño".
+5. NORMATIVA: Mencioná normas IRAM aplicables, requisitos del código de edificación (CABA, PBA, o general), y si necesita habilitación o intervención de profesional matriculado.
+6. COMPATIBILIDAD: Indicá si las soluciones se pueden combinar entre sí (ej: "Compatible con opción 3 como refuerzo") o si son mutuamente excluyentes (ej: "No combinar con opción 2").
 
 Después de todas las soluciones, cerrá con una recomendación final.
 

@@ -2,14 +2,19 @@ export interface SolucionParsed {
   nombre: string;
   complejidad: string;
   costo: string;
+  costo_m2: string;
   durabilidad: string;
   tiempo: string;
   modernidad: string;
   descripcion: string;
   materiales: string[];
+  mano_de_obra: string;
   pasos: string[];
   ventajas: string[];
   desventajas: string[];
+  clima: string;
+  normativa: string;
+  compatibilidad: string;
   cuando_conviene: string;
 }
 
@@ -28,8 +33,6 @@ export function parseSoluciones(text: string): {
 
     if (rest.length > 0 && i === parts.length - 1) {
       despues = rest.join("").trim();
-    } else if (rest.length > 0) {
-      // Text between solutions - append to antes or ignore
     }
 
     const lines = solucionBlock.trim().split("\n");
@@ -37,14 +40,19 @@ export function parseSoluciones(text: string): {
       nombre: "",
       complejidad: "",
       costo: "",
+      costo_m2: "",
       durabilidad: "",
       tiempo: "",
       modernidad: "",
       descripcion: "",
       materiales: [],
+      mano_de_obra: "",
       pasos: [],
       ventajas: [],
       desventajas: [],
+      clima: "",
+      normativa: "",
+      compatibilidad: "",
       cuando_conviene: "",
     };
 
@@ -57,6 +65,9 @@ export function parseSoluciones(text: string): {
         currentField = "";
       } else if (trimmed.startsWith("COMPLEJIDAD:")) {
         sol.complejidad = trimmed.replace("COMPLEJIDAD:", "").trim();
+        currentField = "";
+      } else if (trimmed.startsWith("COSTO_M2:")) {
+        sol.costo_m2 = trimmed.replace("COSTO_M2:", "").trim();
         currentField = "";
       } else if (trimmed.startsWith("COSTO:")) {
         sol.costo = trimmed.replace("COSTO:", "").trim();
@@ -80,6 +91,9 @@ export function parseSoluciones(text: string): {
           .map((m) => m.trim())
           .filter(Boolean);
         currentField = "";
+      } else if (trimmed.startsWith("MANO_DE_OBRA:")) {
+        sol.mano_de_obra = trimmed.replace("MANO_DE_OBRA:", "").trim();
+        currentField = "";
       } else if (trimmed.startsWith("PASOS:")) {
         currentField = "pasos";
       } else if (trimmed.startsWith("VENTAJAS:")) {
@@ -95,6 +109,15 @@ export function parseSoluciones(text: string): {
           .split("|")
           .map((d) => d.trim())
           .filter(Boolean);
+        currentField = "";
+      } else if (trimmed.startsWith("CLIMA:")) {
+        sol.clima = trimmed.replace("CLIMA:", "").trim();
+        currentField = "";
+      } else if (trimmed.startsWith("NORMATIVA:")) {
+        sol.normativa = trimmed.replace("NORMATIVA:", "").trim();
+        currentField = "";
+      } else if (trimmed.startsWith("COMPATIBILIDAD:")) {
+        sol.compatibilidad = trimmed.replace("COMPATIBILIDAD:", "").trim();
         currentField = "";
       } else if (trimmed.startsWith("CUANDO_CONVIENE:")) {
         sol.cuando_conviene = trimmed.replace("CUANDO_CONVIENE:", "").trim();
