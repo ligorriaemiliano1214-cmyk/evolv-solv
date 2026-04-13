@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ChatMessageBubble } from "@/components/chat-message";
+import { MarkdownText } from "@/components/markdown-text";
 import { ChatMessage } from "@/lib/types";
 import { HardHat, Send, Loader2, Trash2 } from "lucide-react";
 
@@ -194,10 +195,8 @@ export default function Home() {
                 <HardHat className="w-4 h-4 text-amber-400" />
               </div>
               <div className="max-w-[80%] bg-zinc-100 rounded-2xl rounded-bl-md px-4 py-3">
-                <p className="text-sm text-zinc-800 whitespace-pre-wrap">
-                  {streamingText}
-                  <span className="inline-block w-1.5 h-4 bg-amber-500 ml-0.5 animate-pulse" />
-                </p>
+                <MarkdownText content={streamingText} />
+                <span className="inline-block w-1.5 h-4 bg-amber-500 ml-0.5 animate-pulse" />
               </div>
             </div>
           )}

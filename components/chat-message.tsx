@@ -4,6 +4,7 @@ import { HardHat, User } from "lucide-react";
 import { ChatMessage } from "@/lib/types";
 import { parseSoluciones, hasSoluciones } from "@/lib/parse-soluciones";
 import { SolucionCard } from "./solucion-card";
+import { MarkdownText } from "./markdown-text";
 
 interface ChatMessageProps {
   message: ChatMessage;
@@ -37,7 +38,7 @@ export function ChatMessageBubble({ message }: ChatMessageProps) {
         <div className="max-w-[90%] space-y-3">
           {antes && (
             <div className="bg-zinc-100 rounded-2xl rounded-bl-md px-4 py-3">
-              <p className="text-sm text-zinc-800 whitespace-pre-wrap">{antes}</p>
+              <MarkdownText content={antes} />
             </div>
           )}
 
@@ -49,7 +50,7 @@ export function ChatMessageBubble({ message }: ChatMessageProps) {
 
           {despues && (
             <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl px-4 py-3">
-              <p className="text-sm text-amber-800 whitespace-pre-wrap">{despues}</p>
+              <MarkdownText content={despues} className="text-amber-800" />
             </div>
           )}
         </div>
@@ -57,14 +58,14 @@ export function ChatMessageBubble({ message }: ChatMessageProps) {
     );
   }
 
-  // Regular text response
+  // Regular text response — render with markdown
   return (
     <div className="flex gap-3">
       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center">
         <HardHat className="w-4 h-4 text-amber-400" />
       </div>
       <div className="max-w-[80%] bg-zinc-100 rounded-2xl rounded-bl-md px-4 py-3">
-        <p className="text-sm text-zinc-800 whitespace-pre-wrap">{message.content}</p>
+        <MarkdownText content={message.content} />
       </div>
     </div>
   );
